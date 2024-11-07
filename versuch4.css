@@ -1,0 +1,101 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; 
+    margin: 0; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('matterhorn.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.date-time { grid-area: date-time; }
+.weather { grid-area: weather; }
+.fact { grid-area: fact; }
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: transparent;
+    gap: 30px;
+}
+
+.weather div {
+    flex: 1;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 30px;
+    margin: 0;
+    border-radius: 0.5em;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+        'date-time weather'
+        'fact weather';
+    grid-template-columns: 530px 1fr;
+    grid-template-rows: 530px 1fr;
+    gap: 30px;
+    height: 100vh; 
+    padding: 30px; 
+}
+
+.fact {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.date-time {
+    display: grid;
+    color: #ffffff;
+    align-items: center;
+    grid-template-columns: 8fr 4fr;
+    gap: 1em;
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+  
+  .clock-container {
+      color: #ffffff;
+      text-align: center;
+      font-size: 4em;
+      border-radius: 0.1em;
+  }
+  
+  .date-container {
+      padding: 0;
+      background-color: rgba(255, 145, 0, 0.5);
+      color: #ffffff;
+      text-align: center;
+      border-radius: 0.5em;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .date-container span {
+      font-size: 2.5em;
+  }
