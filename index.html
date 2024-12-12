@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container" id="fixed_content">
+            <div class="item_style" id="time_div">
+                <p><span id="time_span" class="span">00:00</span></p>
+                <div id="calendar">
+                    <p><span id="calendar_day" class="span, calendar">__________</span></p>
+                    <p><span id="calendar_date" class="span, calendar">_</span></p>
+                    <p><span id="calendar_month" class="span, calendar">__________</span></p>
+                    <p><span id="calendar_year" class="span, calendar">____</span></p>
+                </div>
+            </div>
+            <div class="item_style" id="weather_div">
+                <h1>Wetter</h1>
+                <div id="morgen">
+                    <p>Morgen</p>
+                    <p>Sonnig bei 20°</p>
+                    <p>Leicher Nordostwind</p>
+                </div>
+            </div>
+            <div class="container" id="dynamic_content">
+                <div id="krypto" class="dynamic_content_child">
+                        <!--
+                        Kryptowährungen:
+                        Bitcoin
+                        Etherum
+                        Doge
+                        Bonk
+                        -->
+                    <div id="graph" class="item_style">
+                        <h1>Kryptowährungen</h1>
+                        <div>
+                            <canvas id="graph_chart">Failed to load chart</canvas>
+                        </div>
+                        
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        
+                        <script>
+                            Chart.defaults.color = "#000";
+                            Chart.defaults.font.size = 16;
+                            Chart.defaults.font.weight = "bold";
+
+                            const chart = document.getElementById('graph_chart');
+                            const smoothNess = 0.4 /* Standartmässig 0.4 */
+
+                            function returnNumber() {
+                                return Math.floor(Math.random() * 100);
+                            };
+
+                            var data = {
+                                    datasets: [
+                                        {
+                                            label: 'Bitcoin',
+                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                            lineTension: smoothNess
+                                        },
+                                        {
+                                            label: 'Etherum',
+                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                            lineTension: smoothNess
+                                        },
+                                        {
+                                            label: 'Doge',
+                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                            lineTension: smoothNess
+                                        },
+                                        {
+                                            label: 'Bonk',
+                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                            lineTension: smoothNess
+                                        }
+                                    ]
+                                };
+                            new Chart(chart, {
+                                type: 'line',
+                                data: data,
+                                options: {
+                                    interaction: {
+                                        mode: "none"
+                                    },
+                                    responsive: true,
+                                    pointRadius: "0",
+                                    plugins: {
+                                        legend: {
+                                            position: 'top',
+                                        }
+                                    }
+                                },
+                            });
+                        </script>
+                    </div>
+                    <div id="krypto_data" class="item_style">
+                        <h1>Kurse</h1>
+                        <h2>Bitcoin</h2>
+                        <p>Aktueller Wert: <span id="bitcoin_wert">___</span> CHF</p>
+                        <p>Änderungen seit letzter Stunde: <span>+___</span> CHF | <span>+__</span>%</p>
+                    </div>
+                </div>
+                <div id="rss-feeds" class="dynamic_content_child">
+                    <div class="item_style">
+                        <h1>Instagramm</h1>
+                        <p>...</p>
+                    </div>
+                </div>
+                <div id="weather" class="dynamic_content_child">
+                    <div class="item_style">
+                        <p>Random item</p>
+                    </div>
+                </div>
+            </div>
+            <div id="controlPanel" class="item_style">
+                <h2>Control Panel</h2>
+                <label for="current_weather">Aktuelles Wetter</label>
+                <input id="current_weather" type="text" value="sun">
+                <br>
+                <label for="current_time">Aktuelle Zeit</label>
+                <input id="current_time" type="text">
+                <button onclick="updateView()">Update View</button>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html> 
