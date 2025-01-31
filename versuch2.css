@@ -20,7 +20,7 @@ body {
 
 .grid-container > div {
     text-align: center;
-    padding: 20px 20px;
+    padding: 20px;
     font-size: 30px;
     border-radius: 0.5em;
     background-color: rgba(255, 255, 255, 0.2);
@@ -31,7 +31,29 @@ body {
 .date-time { grid-area: date-time; }
 .weather { grid-area: weather; }
 .insta { grid-area: insta; }
-.rss { grid-area: rss; }
+.rss { 
+    grid-area: rss;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    overflow: hidden; /* Kein Scrollbalken, weil Autoscroll */
+    height: 100%; /* Passt sich der Grid-Höhe an */
+    padding: 20px;
+}
+.rss ul li a {
+    color: white;
+    text-decoration: none;
+}
+.rss ul {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
 .vbs { grid-area: vbs; }
 .qrcode { grid-area: qrcode; }
 
@@ -39,7 +61,7 @@ body {
     display: grid;
     grid-template-areas: 
         'date-time insta insta qrcode'
-        'date-time rss rss rss'
+        'weather rss rss rss'
         'weather vbs vbs vbs';
     grid-template-columns: 530px 400px auto 320px;
     grid-template-rows: 300px 200px auto;
@@ -66,6 +88,7 @@ body {
 
 .date-container {
     padding: 0;
+    font-size: 28px;
     background-color: rgba(255, 145, 0, 0.5);
     color: #ffffff;
     text-align: center;
@@ -75,4 +98,15 @@ body {
 
 .date-container span {
     font-size: 2.5em;
+}
+
+.qrcode {
+    grid-area: qrcode;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
 }
