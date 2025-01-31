@@ -1,147 +1,112 @@
-:root {
-    --flowInEffect: ease-in-out;
-    --flowInTime: 0.3s;
-    --morgenBorderColor: rgba(0, 0, 0, 1);
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background: black url(matterhorn.jpg) center center no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    height: 100%; 
+    margin: 0; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('matterhorn.jpg') no-repeat center center fixed;
     background-size: cover;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-p {
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.25);
     color: white;
 }
 
-h1 {
-    font-size: 50px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0px;
-    color: white;
-}
-
-#controlPanel {
-    position: fixed;
-    bottom: 13px;
-    right: 10px;
-    color: white;
-}
-
-input {
-    width: 100px;
-    color: white;
-    border-radius: 5px;
-    height: 20px;
-    backdrop-filter: blur(1.5px);
-    background-color: rgba(255, 255, 255, 0.15);
-    border: rgba(255, 255, 255, 0.3) 2px solid;
-    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
-}
-
-.container {
-    display: grid;
-}
-
-#fixed_content {
-    grid-template-columns: 30rem 30rem;
-    grid-template-rows: 20rem 30rem;
-}
-
-#weather_div {
-    grid-area: 2 / 1 / 3 / 1;
-}
-
-#morgen {
-    width: auto;
-    height: 7rem;
-    border: 3px solid var(--morgenBorderColor);
-    border-radius: 20px;
-}
-
-#dynamic_content {
-    grid-area: 1 / 2 / 3 / 3;
-    grid-template-columns: 30rem;
-    grid-template-rows: 50rem 50rem 50rem;
-    float: none;
-    overflow-x: scroll;
-    height: 50rem;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-}
-
-.dynamic_content_child {
-    scroll-snap-align: start;
-}
-
-#calendar {
-    background-color: white;
-    border-radius: 20px;
-    border: 2px rgb(216, 216, 216) solid;
-    border-top: rgb(211, 2, 2) 10px solid;
-    position: relative;
-    width: 120px;
-    height: 200px;
-    left: 300px;
-    bottom: 120px;
+.grid-container > div {
     text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 0.5em;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
 }
 
-.calendar {
-    color: black;
+.date-time { grid-area: date-time; }
+.weather { grid-area: weather; }
+.insta { grid-area: insta; }
+.rss { 
+    grid-area: rss;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    overflow: hidden; /* Kein Scrollbalken, weil Autoscroll */
+    height: 100%; /* Passt sich der Grid-Höhe an */
+    padding: 20px;
+}
+.rss ul li a {
+    color: white;
+    text-decoration: none;
+}
+.rss ul {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+.vbs { grid-area: vbs; }
+.qrcode { grid-area: qrcode; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+        'date-time insta insta qrcode'
+        'weather rss rss rss'
+        'weather vbs vbs vbs';
+    grid-template-columns: 530px 400px auto 320px;
+    grid-template-rows: 300px 200px auto;
+    gap: 30px;
+    height: 100vh; 
+    padding: 30px; 
 }
 
-#calendar_day, #calendar_month, #calendar_year {
-    font-size: 20px;
+.date-time {
+  display: grid;
+  color: #ffffff;
+  align-items: center;
+  grid-template-columns: 8fr 4fr;
+  gap: 1em;
 }
 
-#calendar_date {
-    font-size: 60px;
+.clock-container {
+    color: #ffffff;
+    font-weight: 400;
+    text-align: center;
+    font-size: 4em;
+    border-radius: 0.1em;
 }
 
-#calendar_year {
-    position: absolute;
-    bottom: 10px;
-    left: 30%;
+.date-container {
+    padding: 0;
+    font-size: 28px;
+    background-color: rgba(255, 145, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 0.5em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-#calendar_day, #calendar_month, #calendar_date, #calendar_year, #time_span, #morgen {
-    -webkit-transition: opacity var(--flowInTime) var(--flowInEffect);
-    -moz-transition: opacity var(--flowInTime) var(--flowInEffect);
-    transition: opacity var(--flowInTime) var(--flowInEffect);
-    opacity: 0;
+.date-container span {
+    font-size: 2.5em;
 }
 
-#time_span {
-    position: relative;
-    top: 4rem;
-    font-size: 100px;
-    left: 1rem;
-}
-
-#krypto_data {
-    margin-top: 20px;
-}
-
-.item_style {
-    margin: 10px;
-    padding: 10px;
-    backdrop-filter: blur(1.5px);
-    background-color: rgba(255, 255, 255, 0.15);
-    border: rgba(255, 255, 255, 0.3) 2px solid;
-    border-radius: 20px;
-    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
+.qrcode {
+    grid-area: qrcode;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
 }
