@@ -51,7 +51,7 @@ async function loadRSS() {
       let articles = [];
 
       items.forEach((item, index) => {
-          if (index < 5) { // Max. 5 Artikel anzeigen
+          if (index < 3) { // Max. 3 Artikel anzeigen
               const title = item.querySelector("title").textContent;
               const link = item.querySelector("link").getAttribute("href");
 
@@ -62,7 +62,6 @@ async function loadRSS() {
       });
 
       // Dupliziere die Artikel für den Endlos-Scroll
-      articles.forEach(li => rssContainer.appendChild(li.cloneNode(true)));
       articles.forEach(li => rssContainer.appendChild(li.cloneNode(true)));
 
       startScrolling();
@@ -124,8 +123,8 @@ function generateQRCode(url) {
   qrcodeContainer.innerHTML = "";
   new QRCode(qrcodeContainer, {
       text: url,
-      width: 250,
-      height: 250,
+      width: 280,
+      height: 280,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
@@ -134,3 +133,13 @@ function generateQRCode(url) {
 
 // Beim Laden der Seite starten
 document.addEventListener("DOMContentLoaded", fetchLatestVBSPost);
+
+!function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(!d.getElementById(id)){
+      js=d.createElement(s);
+      js.id=id;
+      js.src='https://weatherwidget.io/js/widget.min.js';
+      fjs.parentNode.insertBefore(js,fjs);
+  }
+}(document,'script','weatherwidget-io-js');
