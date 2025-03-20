@@ -2,8 +2,11 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.0/tsparticles.bundle.min.js"></script>
+        <script src="index.js"></script>
     </head>
-    <body>
+    <body onload="sayhi()">
+        <div id="tsparticles"></div>
         <div class="container" id="fixed_content">
             <div class="item_style" id="time_div">
                 <p><span id="time_span" class="span">00:00</span></p>
@@ -17,7 +20,17 @@
             <div class="item_style" id="weather_div">
                 <h1>Wetter</h1>
                 <div id="morgen">
-                    <p>Morgen</p>
+                    <h2>Morgen</h2>
+                    <p>Sonnig bei 20°</p>
+                    <p>Leicher Nordostwind</p>
+                </div>
+                <div id="mittag">
+                    <h2>Mittag</h2>
+                    <p>Sonnig bei 20°</p>
+                    <p>Leicher Nordostwind</p>
+                </div>
+                <div id="abend">
+                    <h2>Abend</h2>
                     <p>Sonnig bei 20°</p>
                     <p>Leicher Nordostwind</p>
                 </div>
@@ -52,29 +65,29 @@
                             };
 
                             var data = {
-                                    datasets: [
-                                        {
-                                            label: 'Bitcoin',
-                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
-                                            lineTension: smoothNess
-                                        },
-                                        {
-                                            label: 'Etherum',
-                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
-                                            lineTension: smoothNess
-                                        },
-                                        {
-                                            label: 'Doge',
-                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
-                                            lineTension: smoothNess
-                                        },
-                                        {
-                                            label: 'Bonk',
-                                            data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
-                                            lineTension: smoothNess
-                                        }
-                                    ]
-                                };
+                                datasets: [
+                                    {
+                                        label: 'Bitcoin',
+                                        data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                        lineTension: smoothNess
+                                    },
+                                    {
+                                        label: 'Etherum',
+                                        data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                        lineTension: smoothNess
+                                    },
+                                    {
+                                        label: 'Doge',
+                                        data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                        lineTension: smoothNess
+                                    },
+                                    {
+                                        label: 'Bonk',
+                                        data: [{x: '2024-12-31', y: returnNumber()}, {x: '2025-01-01', y: returnNumber()}, {x: '2025-01-02', y: returnNumber()}, {x: '2025-01-03', y: returnNumber()}],
+                                        lineTension: smoothNess
+                                    }
+                                ]
+                            };
                             new Chart(chart, {
                                 type: 'line',
                                 data: data,
@@ -100,15 +113,29 @@
                         <p>Änderungen seit letzter Stunde: <span>+___</span> CHF | <span>+__</span>%</p>
                     </div>
                 </div>
-                <div id="rss-feeds" class="dynamic_content_child">
+                <div id="feeds" class="dynamic_content_child">
                     <div class="item_style">
                         <h1>Instagramm</h1>
                         <p>...</p>
                     </div>
+                    <div class="item_style">
+                        <h1>RUAG-News</h1>
+                        <iframe src="https://www.wikipedia.org"></iframe>
+                        <iframe src="https://www.ruag.ch/de/ueber-uns/news"></iframe>
+                    </div>
+                    <div class="item_style">
+                        <h1>RSS-Feeds</h1>
+                        <a href="https://www.heise.de/security/rss/news-atom.xml">Download</a>
+                    </div>
                 </div>
                 <div id="weather" class="dynamic_content_child">
                     <div class="item_style">
-                        <p>Random item</p>
+                        <h1>Cat Picture</h1>
+                        <img src="background-image.png" alt="Ein Bild einer Katze" width="100%">
+                    </div>
+                    <div class="item_style">
+                        <h1>XXX</h1>
+                        <p>Hi</p>
                     </div>
                 </div>
             </div>
@@ -122,6 +149,5 @@
                 <button onclick="updateView()">Update View</button>
             </div>
         </div>
-        <script src="index.js"></script>
     </body>
-</html> 
+</html>

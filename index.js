@@ -1,7 +1,7 @@
 console.log('Start JS');
 
 var current_view = 0;
-const views = ["krypto", "rss-feeds", "weather"]
+const views = ["krypto", "feeds", "weather"]
 
 const weekdays = [
     "Sonntag",
@@ -47,19 +47,25 @@ function updateView() {
     document.getElementById(views[current_view]).scrollIntoView({
         behavior: "auto",
         block: "start"
-
     })
     current_view = (current_view+1)%3
-    console.log(current_view)
 }
 
 function updateWeather() {
     document.getElementById('morgen').style.background = weatherColors[document.getElementById('current_weather').value];
     document.querySelector(":root").style.setProperty('--morgenBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+    document.getElementById('mittag').style.background = weatherColors[document.getElementById('current_weather').value];
+    document.querySelector(":root").style.setProperty('--mittagBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+    document.getElementById('abend').style.background = weatherColors[document.getElementById('current_weather').value];
+    document.querySelector(":root").style.setProperty('--abendBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
 }
 
 function updateTime() {
     time_span.innerText = document.getElementById('current_time').value;
+}
+
+function sayhi() {
+    console.log("hi")
 }
 
 current_weather_input.addEventListener('keydown', function(event) {
@@ -130,6 +136,8 @@ var updateTimeVar = setInterval(function setTime() {
         calendar_year.innerText = year;
     }
     document.getElementById('morgen').style.background = weatherColors[0]
+    document.getElementById('mittag').style.background = weatherColors[0]
+    document.getElementById('abend').style.background = weatherColors[0]
     if (time_span.style.opacity == 0) {
         document.title = "Dashboard - " + day + ", " + date + ". " + month + " " + year
         updateCrypto()
@@ -145,12 +153,68 @@ var updateTimeVar = setInterval(function setTime() {
         calendar_year.style.opacity = '1'
         document.getElementById('morgen').style.opacity = '1';
         document.getElementById('morgen').style.background = weatherColors[document.getElementById('current_weather').value];
+        document.getElementById('mittag').style.opacity = '1';
+        document.getElementById('mittag').style.background = weatherColors[document.getElementById('current_weather').value];
+        document.getElementById('abend').style.opacity = '1';
+        document.getElementById('abend').style.background = weatherColors[document.getElementById('current_weather').value];
         document.querySelector(":root").style.setProperty('--morgenBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+        document.querySelector(":root").style.setProperty('--mittagBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+        document.querySelector(":root").style.setProperty('--abendBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
         document.getElementById('current_time').value = formattedTime;
     }
 }, 1000);
 
 var updateWeatherVar = setInterval(function updateWeather() {
     document.getElementById('morgen').style.background = weatherColors[document.getElementById('current_weather').value];
+    document.getElementById('mittag').style.background = weatherColors[document.getElementById('current_weather').value];
+    document.getElementById('abend').style.background = weatherColors[document.getElementById('current_weather').value];
     document.querySelector(":root").style.setProperty('--morgenBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+    document.querySelector(":root").style.setProperty('--mittagBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
+    document.querySelector(":root").style.setProperty('--abendBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
 }, 60000)
+
+function doStuff() {
+    tsParticles.load("tsparticles", {
+        background: {
+            color: null // Setting color to null makes the background transparent
+        },
+        particles: {
+            color: {
+                value: "#fff"
+            },
+            move: {
+                direction: "bottom",
+                enable: true,
+                outModes: "out",
+                speed: 2
+            },
+            number: {
+                density: {
+                    enable: true,
+                    area: 800
+                },
+                value: 400
+            },
+            opacity: {
+                value: 0.8
+            },
+            shape: {
+                type: "circle"
+            },
+            size: {
+                value: 10
+            },
+            wobble: {
+                enable: true,
+                distance: 10,
+                speed: 10
+            },
+            zIndex: {
+                value: {
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    });
+}
