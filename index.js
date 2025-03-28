@@ -64,24 +64,6 @@ function updateTime() {
     time_span.innerText = document.getElementById('current_time').value;
 }
 
-function sayhi() {
-    console.log("hi")
-}
-
-current_weather_input.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) {
-        updateWeather();
-        event.preventDefault();
-    }
-});
-
-current_time_input.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) {
-        updateTime();
-        event.preventDefault();
-    }
-});
-
 function formatNumber(n) {
     var t = [];
 
@@ -139,6 +121,7 @@ var updateTimeVar = setInterval(function setTime() {
     document.getElementById('mittag').style.background = weatherColors[0]
     document.getElementById('abend').style.background = weatherColors[0]
     if (time_span.style.opacity == 0) {
+        console.log("Start")
         document.title = "Dashboard - " + day + ", " + date + ". " + month + " " + year
         updateCrypto()
         time_span.innerText = formattedTime;
@@ -172,6 +155,10 @@ var updateWeatherVar = setInterval(function updateWeather() {
     document.querySelector(":root").style.setProperty('--mittagBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
     document.querySelector(":root").style.setProperty('--abendBorderColor', weatherBorderColors[document.getElementById('current_weather').value]);
 }, 60000)
+
+function onpageload() {
+    console.log("Page loaded")
+}
 
 function doStuff() {
     tsParticles.load("tsparticles", {
